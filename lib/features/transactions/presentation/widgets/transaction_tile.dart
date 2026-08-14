@@ -80,12 +80,16 @@ class TransactionTile extends StatelessWidget {
           padding: const EdgeInsets.only(top: 4),
           child: Row(
             children: [
-              Text(
-                category.name,
-                style: TextStyle(
-                  fontSize: 12,
-                  color: category.color,
-                  fontWeight: FontWeight.w600,
+              Flexible(
+                child: Text(
+                  category.name,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: category.color,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
               const Text(
@@ -106,12 +110,15 @@ class TransactionTile extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Text(
-              '${isExpense ? '-' : '+'}${CurrencyFormatter.format(transaction.amount, currency: transaction.currency)}',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 15,
-                color: isExpense ? AppColors.expense : AppColors.income,
+            FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Text(
+                '${isExpense ? '-' : '+'}${CurrencyFormatter.format(transaction.amount, currency: transaction.currency)}',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                  color: isExpense ? AppColors.expense : AppColors.income,
+                ),
               ),
             ),
             const SizedBox(height: 2),
